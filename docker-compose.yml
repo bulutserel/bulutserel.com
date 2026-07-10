@@ -1,0 +1,17 @@
+services:
+  web:
+    image: node:22-bookworm-slim
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    environment:
+      # File watching inside Docker on macOS
+      WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - .:/app
+      - nodemodules:/app/node_modules
+    command: bash -lc "npm install && npm run dev -- --hostname 0.0.0.0 --port 3000"
+
+volumes:
+  nodemodules:
