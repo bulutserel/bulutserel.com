@@ -7,7 +7,7 @@ export const skills: SkillGroup[] = [
       "Roadmap Planning",
       "KPI Tracking",
       "Cross-functional Collaboration",
-      "Lead product with 9 domains",
+      "Lead cross-domain products",
       "Build 0 to 1",
     ],
   },

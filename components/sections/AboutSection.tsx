@@ -1,60 +1,62 @@
 import { about } from "@/content/about";
-import { Container } from "@/components/layout/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-
-const headingId = "about-section-heading";
+import { Section } from "@/components/layout/Section";
 
 export function AboutSection() {
   return (
-    <section
-      id="about"
-      aria-labelledby={headingId}
-      className="border-y border-card-border/60 bg-cream/15 py-section"
-    >
-      <Container>
-        <SectionHeading id={headingId} title="About Me" />
+    <Section id="about" index="01" title="About">
+      <div className="max-w-2xl space-y-10">
+        <div className="space-y-4 text-base leading-relaxed">
+          {about.bio.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </div>
 
-        <div className="mx-auto mt-12 max-w-3xl space-y-10">
-          <div className="space-y-4 text-base leading-relaxed text-muted">
-            {about.bio.map((p) => (
+        <p className="border-l-2 border-foreground pl-5 text-lg italic leading-relaxed">
+          &ldquo;{about.quote.text}&rdquo;{" "}
+          <span className="whitespace-nowrap font-mono text-sm not-italic">
+            &mdash; {about.quote.author}
+          </span>
+        </p>
+
+        <section aria-labelledby="why-pm-heading">
+          <h3 id="why-pm-heading" className="font-display text-2xl uppercase sm:text-3xl">
+            Why I Chose to Become a Product Manager
+          </h3>
+          <div className="mt-4 space-y-4 text-base leading-relaxed">
+            {about.philosophy.map((p) => (
               <p key={p}>{p}</p>
             ))}
           </div>
+        </section>
 
-          <section aria-labelledby="why-pm-heading">
-            <h3
-              id="why-pm-heading"
-              className="text-sm font-semibold tracking-tight text-foreground"
-            >
-              Why I choose to become a Product Manager ?
-            </h3>
-            <div className="mt-4 space-y-4 text-base leading-relaxed text-muted">
-              {about.philosophy.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
-          </section>
-
-          <section aria-labelledby="interests-heading">
-            <h3
-              id="interests-heading"
-              className="text-center text-sm font-semibold tracking-tight text-foreground"
-            >
-              Interests
-            </h3>
-            <div className="mt-4 flex flex-wrap justify-center gap-2.5">
-              {about.interests.map((item) => (
-                <span
-                  key={item}
-                  className="inline-flex rounded-xl border border-navy-900 bg-cream px-4 py-2 text-sm font-medium tracking-tight text-navy-900 shadow-soft"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </section>
-        </div>
-      </Container>
-    </section>
+        <section aria-labelledby="interests-heading">
+          <h3 id="interests-heading" className="font-display text-2xl uppercase sm:text-3xl">
+            Interests
+          </h3>
+          <div className="mt-4 space-y-5">
+            {[
+              { label: "Professionally", items: about.interests.professional },
+              { label: "Beyond work", items: about.interests.personal },
+            ].map((group) => (
+              <div key={group.label}>
+                <p className="font-mono text-xs uppercase tracking-wide text-muted">
+                  {group.label}
+                </p>
+                <ul className="mt-2 flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <li
+                      key={item}
+                      className="border-2 border-foreground px-3 py-1.5 font-mono text-xs uppercase tracking-wide"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </Section>
   );
 }

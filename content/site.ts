@@ -1,16 +1,18 @@
 export const site = {
   name: "Hüseyin Bulut Serel",
   title: "Product Manager",
-  tagline:
-    "Building scalable digital products — from discovery and data clarity to shipped iterations.",
+  headline: "Product Manager for delivery operations.",
+  tagline: "Turning courier and driver workflows into reliable products.",
+  heroStats: ["7 yrs in tech", "Cross domain", "QA → Product"],
   /** Short mantra under hero CTAs */
-  heroMantra: "TALK, PLAN, BUILD",
+  heroMantra: "TALK, PLAN AND BUILD",
   description:
     "Personal site — product strategy, KPI ownership, and cross-functional product leadership.",
   url: "https://bulutserel.com",
   locale: "en",
   /** Shown under hero avatar */
-  location: "Ankara, Türkiye",
+  status: "PM @ Getir",
+  location: "Ankara, TR",
 } as const;
 
 export const nav = {

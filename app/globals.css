@@ -1,88 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #f6f1e8;
-  --off-white: #faf7f2;
-  --sand: #d9cbb8;
-  --navy-900: #0f172a;
-  --navy-800: #1e293b;
-  --navy-700: #334155;
-  --sage-300: #bfd8b8;
-  --sage-500: #a3b18a;
-  --sage-700: #7c9473;
-  --border-soft: #e5e7eb;
-  --divider-warm: #ddd6ce;
-  --text-muted: #6b7280;
-
-  --background: var(--off-white);
-  --foreground: #111827;
-  --muted: #475569;
-  --card: rgba(250, 247, 242, 0.85);
-  --card-border: var(--divider-warm);
-  --primary: var(--navy-900);
-  --accent-deep: var(--sage-700);
-  --accent: var(--sage-500);
-  --ring: var(--sage-500);
-  --hero-glow: color-mix(in oklab, var(--sage-500) 28%, transparent);
-  --hero-sand: color-mix(in oklab, var(--sand) 35%, transparent);
-  --section-y: clamp(3.5rem, 8vw, 6.5rem);
+  --background: #f5f5f0;
+  --foreground: #0a0a0a;
+  --muted: #555;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
-  --color-card: var(--card);
-  --color-card-border: var(--card-border);
-  --color-primary: var(--primary);
-  --color-accent: var(--accent);
-  --color-accent-deep: var(--accent-deep);
-  --color-sand: var(--sand);
-  --color-cream: var(--cream);
-  --color-off-white: var(--off-white);
-  --color-navy-900: var(--navy-900);
-  --color-navy-800: var(--navy-800);
-  --color-navy-700: var(--navy-700);
-  --color-sage-300: var(--sage-300);
-  --color-sage-500: var(--sage-500);
-  --color-sage-700: var(--sage-700);
-  --color-border-soft: var(--border-soft);
-  --color-divider-warm: var(--divider-warm);
-  --color-ring: var(--ring);
-  --spacing-section: var(--section-y);
-  --radius-xl: 1rem;
-  --radius-2xl: 1.25rem;
-  --shadow-soft: 0 18px 48px -28px color-mix(in oklab, var(--navy-900) 14%, transparent);
-  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.45);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
     monospace;
+  --font-display: var(--font-anton), var(--font-geist-sans), sans-serif;
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
     text-rendering: optimizeLegibility;
   }
 
+  section {
+    scroll-margin-top: calc(4rem + 2px);
+  }
+
   ::selection {
-    background: color-mix(in oklab, var(--sage-500) 35%, transparent);
-    color: var(--foreground);
+    background: var(--foreground);
+    color: var(--background);
   }
 
   :focus-visible {
-    outline: 2px solid var(--ring);
+    outline: 2px solid var(--foreground);
     outline-offset: 3px;
+  }
+
+  summary {
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
   }
 }

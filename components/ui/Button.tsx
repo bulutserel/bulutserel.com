@@ -20,13 +20,11 @@ export type ButtonNativeProps = Shared &
   };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium transition-[transform,background-color,color,box-shadow] duration-200 active:scale-[0.99]";
+  "inline-flex items-center justify-center gap-2 border-2 border-foreground px-5 py-3 font-mono text-sm uppercase tracking-wide";
 
 const variants = {
-  primary:
-    "bg-primary text-cream shadow-soft hover:bg-navy-800 focus-visible:ring-2 focus-visible:ring-ring",
-  ghost:
-    "border border-navy-900/20 bg-cream text-foreground shadow-[var(--shadow-inset)] backdrop-blur-md hover:border-sage-500 hover:text-sage-700",
+  primary: "bg-foreground text-background hover:bg-background hover:text-foreground",
+  ghost: "bg-background text-foreground hover:bg-foreground hover:text-background",
 };
 
 export function Button(props: ButtonLinkProps | ButtonNativeProps) {
