@@ -4,12 +4,14 @@
   --background: #f5f5f0;
   --foreground: #0a0a0a;
   --muted: #555;
+  --line: #d9d9d2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-line: var(--line);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
     monospace;

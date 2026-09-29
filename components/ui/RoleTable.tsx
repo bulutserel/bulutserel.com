@@ -14,10 +14,10 @@ export function RoleTable({
   );
 
   return (
-    <div className="border-t-2 border-foreground">
+    <div>
       <div
         aria-hidden
-        className={`hidden border-b-2 border-foreground py-2 font-mono text-xs uppercase tracking-wide text-muted sm:grid ${columns}`}
+        className={`hidden border-b border-foreground py-2 font-mono text-xs uppercase tracking-wide text-muted sm:grid ${columns}`}
       >
         {labels.map((label) => (
           <span key={label}>{label}</span>
@@ -27,7 +27,7 @@ export function RoleTable({
         <details
           key={row.id}
           open={i === 0}
-          className="group border-b-2 border-foreground"
+          className="group border-b border-line last:border-b-0"
         >
           <summary className="-mx-2 flex cursor-pointer items-start gap-4 px-2 py-4 hover:bg-foreground hover:text-background">
             <span className={`grid flex-1 gap-1 ${columns}`}>
