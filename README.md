@@ -51,14 +51,16 @@ All copy lives in `content/`, so most changes don't touch components:
 
 | File | What it holds |
 | --- | --- |
-| `site.ts` | Name, hero headline and tagline, hero stats, avatar caption, mantra, nav |
-| `about.ts` | Bio, Rocky quote, "Why I Chose to Become a Product Manager", interests |
+| `site.ts` | Name, hero headline (two parts: white and gray) and tagline, status and location, marquee stats, mantra, nav |
+| `about.ts` | Bio, Rocky quote, "Why I chose to become a product manager", interests |
 | `experience.ts` | Roles and achievements shown in the Experience table |
 | `education.ts` | Education table |
 | `skills.ts` | Skill rows (doing / using / learning) |
-| `social.ts` | Email, LinkedIn, GitHub, SoundCloud links |
+| `social.ts` | Email, LinkedIn, GitHub, SoundCloud links (hero icons and Contact) |
 
-Design rules are in [`project.md`](project.md).
+Design rules, motion, components and the avatar image files are described in [`project.md`](project.md).
+
+The link preview image (`app/opengraph-image.png`) is a static file. If you change the hero headline or location, ask for it to be regenerated so previews on LinkedIn and WhatsApp match.
 
 ## Checks
 

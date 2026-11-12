@@ -1,8 +1,10 @@
 export const site = {
   name: "Hüseyin Bulut Serel",
   title: "Product Manager",
-  headline: "Product Manager for delivery operations.",
-  tagline: "Turning courier and driver workflows into reliable products.",
+  headline: "Product Manager turning complexity into clarity.",
+  /** Hero headline split in two: the second part is shown in gray. */
+  headlineParts: ["Product Manager", "turning complexity into clarity."],
+  tagline: "Cross-domain products, from 0 to 1, built with engineers and the people who use them.",
   heroStats: ["7 yrs in tech", "Cross domain", "QA → Product"],
   /** Short mantra under hero CTAs */
   heroMantra: "TALK, PLAN AND BUILD",
@@ -12,7 +14,7 @@ export const site = {
   locale: "en",
   /** Shown under hero avatar */
   status: "PM @ Getir",
-  location: "Ankara, TR",
+  location: "Ankara, İstanbul, TR",
 } as const;
 
 export const nav = {

@@ -1,32 +1,61 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 :root {
-  --background: #f5f5f0;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --muted: #8a8a8a;
+  --faint: #3a3a3a;
+  --line: #222222;
+  --surface: #141414;
+  color-scheme: dark;
+  --intro: 1400ms;
+}
+
+:root.intro-seen {
+  --intro: 0ms;
+}
+
+:root[data-theme="light"] {
+  --background: #fafafa;
   --foreground: #0a0a0a;
-  --muted: #555;
-  --line: #d9d9d2;
+  --muted: #6b6b6b;
+  --faint: #c4c4c4;
+  --line: #e4e4e4;
+  --surface: #f0f0f0;
+  color-scheme: light;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-faint: var(--faint);
   --color-line: var(--line);
+  --color-surface: var(--surface);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
     monospace;
-  --font-display: var(--font-anton), var(--font-geist-sans), sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
     text-rendering: optimizeLegibility;
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
   }
 
   section {
-    scroll-margin-top: calc(4rem + 2px);
+    scroll-margin-top: 4rem;
   }
 
   ::selection {
@@ -37,13 +66,216 @@
   :focus-visible {
     outline: 2px solid var(--foreground);
     outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* Scroll reveal: hidden only when JS is running, so content is never lost. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero headline: words rise in one after another on load. */
+@keyframes word-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+.word {
+  display: inline-block;
+  animation: word-rise 1s var(--ease-out-expo) both;
+  animation-delay: calc(var(--intro) + var(--i) * 70ms + 100ms);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 1s var(--ease-out-expo) both;
+  animation-delay: calc(var(--intro) + var(--delay, 0ms));
+}
+
+/* Intro curtain: name and a loading line, then the curtain lifts. Once per session. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--background);
+  animation: intro-out 0.9s var(--ease-out-expo) 1.2s forwards;
+}
+
+.intro-seen .intro {
+  display: none;
+}
+
+.intro-name {
+  animation: fade-up 0.8s var(--ease-out-expo) both;
+}
+
+.intro-bar {
+  transform-origin: left;
+  animation: intro-bar 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.2s both;
+}
+
+@keyframes intro-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes intro-out {
+  to {
+    transform: translateY(-100%);
+    visibility: hidden;
+  }
+}
+
+/* Hero avatar: mantra ring turns slowly, a bit faster on hover. */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.avatar-ring {
+  animation: spin 40s linear infinite;
+}
+
+.group:hover .avatar-ring {
+  animation-duration: 12s;
+}
+
+/* About quote: steps draw in, the figure appears, raises its arms, then hops. */
+.stairs-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.stairs-arm {
+  transform-box: view-box;
+  transform-origin: 114px 47px;
+}
+
+.js .reveal .stairs-path {
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.6s var(--ease-out-expo) 0.2s;
+}
+
+.js .reveal .stairs-figure {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.6s ease 1.2s,
+    transform 0.6s var(--ease-out-expo) 1.2s;
+}
+
+.js .reveal .stairs-arm {
+  transform: scaleY(-1);
+  transition: transform 0.7s var(--ease-out-expo) 1.7s;
+}
+
+.js .reveal.is-visible .stairs-path {
+  stroke-dashoffset: 0;
+}
+
+.js .reveal.is-visible .stairs-figure {
+  opacity: 1;
+  transform: none;
+  animation: hop 2.4s ease-in-out 2.6s infinite;
+}
+
+.js .reveal.is-visible .stairs-arm {
+  transform: none;
+}
+
+@keyframes hop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Contact: the avatar head peeks over the bottom edge and rises when "Let's talk" is hovered. */
+.peek {
+  transform: translateY(58%);
+  transition: transform 0.9s var(--ease-out-expo);
+}
+
+#contact:has(.talk-link:hover, .talk-link:focus-visible) .peek {
+  transform: translateY(22%) rotate(-4deg);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  summary {
-    list-style: none;
+  :root {
+    --intro: 0ms;
   }
 
-  summary::-webkit-details-marker {
+  .intro {
     display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

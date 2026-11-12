@@ -20,12 +20,23 @@ export type ButtonNativeProps = Shared &
   };
 
 const base =
-  "inline-flex items-center justify-center gap-2 border-2 border-foreground px-5 py-3 font-mono text-sm uppercase tracking-wide";
+  "group inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-medium transition-[background-color,color,border-color,transform] duration-300 ease-out-expo active:scale-[0.97]";
 
 const variants = {
-  primary: "bg-foreground text-background hover:bg-background hover:text-foreground",
-  ghost: "bg-background text-foreground hover:bg-foreground hover:text-background",
+  primary: "border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground",
+  ghost: "border-line text-foreground hover:border-foreground",
 };
+
+function Arrow() {
+  return (
+    <span
+      aria-hidden
+      className="inline-block transition-transform duration-300 ease-out-expo group-hover:translate-x-1"
+    >
+      &rarr;
+    </span>
+  );
+}
 
 export function Button(props: ButtonLinkProps | ButtonNativeProps) {
   const { variant = "primary", className, children } = props;
@@ -36,6 +47,7 @@ export function Button(props: ButtonLinkProps | ButtonNativeProps) {
     return (
       <Link href={href} className={styles} target={target} rel={rel}>
         {children}
+        <Arrow />
       </Link>
     );
   }

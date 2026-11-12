@@ -22,6 +22,6 @@ export const about = {
       "Internal tools & panels",
       "Generative AI",
     ],
-    personal: ["Basketball", "Music production", "Dancing with chaos"],
+    personal: ["Sports", "Music production", "Dancing with chaos"],
   },
 } as const;
