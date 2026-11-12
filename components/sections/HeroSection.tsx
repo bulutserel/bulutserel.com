@@ -56,9 +56,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="fade-up" style={{ "--delay": "500ms" } as React.CSSProperties}>
-          <AvatarRing />
-        </div>
+        <AvatarRing />
       </Container>
 
       <Marquee items={site.heroStats} />

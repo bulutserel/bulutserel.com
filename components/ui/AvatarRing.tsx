@@ -20,7 +20,9 @@ export function AvatarRing() {
           </textPath>
         </text>
       </svg>
-      <div className="absolute inset-[16%] overflow-hidden rounded-full bg-surface ring-1 ring-line">
+      <div
+        className="avatar-photo absolute inset-[16%] overflow-hidden rounded-full bg-surface ring-1 ring-line"
+      >
         <Image
           src="/bulut_bust.png"
           alt={`Illustrated portrait of ${site.name}`}

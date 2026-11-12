@@ -28,8 +28,7 @@ The avatar is the only colored element on the page.
 
 ## Motion
 
-- On the first visit in a session an intro curtain shows the avatar, the name and a loading line, then lifts (`.intro`, skipped via `sessionStorage`).
-- Hero headline rises in word by word after the curtain; the rest of the hero fades up after it.
+- Hero headline rises in word by word on load; the rest of the hero fades up after it.
 - Content uses `.reveal` and fades up once when it scrolls into view (`RevealObserver`). Use `--reveal-delay` to stagger.
 - Stats run as an endless marquee that pauses on hover.
 - The mantra ring around the hero avatar turns slowly and speeds up on hover.
@@ -61,7 +60,7 @@ The avatar is the only colored element on the page.
 
 - `public/bulut_avatar.png`: the original illustration.
 - `public/bulut_bust.png`: square head-and-shoulders crop with the T-shirt (hero ring); sides extended with the image's own edge colors.
-- `public/bulut_face.png`: tighter square face crop (header, intro, icons).
+- `public/bulut_face.png`: tighter square face crop (header mini avatar, icons).
 - `public/bulut_head.png`: head cut out with a transparent background (contact peek).
 - `app/icon.png`, `app/apple-icon.png`, `app/opengraph-image.png`: favicon, home-screen icon and link preview, generated from the face crop.
 

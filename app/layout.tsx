@@ -38,9 +38,8 @@ export const viewport: Viewport = {
 /**
  * Runs before paint: applies the saved or system theme and marks JS as
  * available, so there is no flash of the wrong theme or of hidden content.
- * Also skips the intro curtain after the first page view in a session.
  */
-const bootScript = `(function(){try{var d=document.documentElement;d.classList.add('js');var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}d.dataset.theme=t;if(sessionStorage.getItem('intro')){d.classList.add('intro-seen')}else{sessionStorage.setItem('intro','1')}}catch(e){}})();`;
+const bootScript = `(function(){try{var d=document.documentElement;d.classList.add('js');var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}d.dataset.theme=t}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -58,22 +57,6 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
       <body className="min-h-dvh bg-background text-foreground">
-        <div className="intro" aria-hidden>
-          <div className="w-56">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/bulut_face.png"
-              alt=""
-              width={56}
-              height={56}
-              className="intro-name mb-5 size-14 rounded-full"
-            />
-            <p className="intro-name text-xl font-medium tracking-[-0.02em]">{site.name}</p>
-            <div className="mt-4 h-px bg-line">
-              <div className="intro-bar h-px bg-foreground" />
-            </div>
-          </div>
-        </div>
         <a
           href="#main"
           className="fixed left-4 top-4 z-[100] -translate-y-[200%] rounded-full bg-foreground px-4 py-2 font-mono text-xs uppercase text-background focus-visible:translate-y-0"

@@ -10,11 +10,6 @@
   --line: #222222;
   --surface: #141414;
   color-scheme: dark;
-  --intro: 1400ms;
-}
-
-:root.intro-seen {
-  --intro: 0ms;
 }
 
 :root[data-theme="light"] {
@@ -102,7 +97,7 @@
 .word {
   display: inline-block;
   animation: word-rise 1s var(--ease-out-expo) both;
-  animation-delay: calc(var(--intro) + var(--i) * 70ms + 100ms);
+  animation-delay: calc(var(--i) * 70ms + 100ms);
 }
 
 @keyframes fade-up {
@@ -118,47 +113,23 @@
 
 .fade-up {
   animation: fade-up 1s var(--ease-out-expo) both;
-  animation-delay: calc(var(--intro) + var(--delay, 0ms));
+  animation-delay: var(--delay, 0ms);
 }
 
-/* Intro curtain: name and a loading line, then the curtain lifts. Once per session. */
-.intro {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  display: grid;
-  place-items: center;
-  background: var(--background);
-  animation: intro-out 0.9s var(--ease-out-expo) 1.2s forwards;
-}
-
-.intro-seen .intro {
-  display: none;
-}
-
-.intro-name {
-  animation: fade-up 0.8s var(--ease-out-expo) both;
-}
-
-.intro-bar {
-  transform-origin: left;
-  animation: intro-bar 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.2s both;
-}
-
-@keyframes intro-bar {
+@keyframes fade-in {
   from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
+    opacity: 0;
   }
 }
 
-@keyframes intro-out {
-  to {
-    transform: translateY(-100%);
-    visibility: hidden;
-  }
+.fade-in {
+  animation: fade-in 1s ease both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.avatar-photo {
+  animation: fade-in 1s ease both;
+  animation-delay: 500ms;
 }
 
 /* Hero avatar: mantra ring turns slowly, a bit faster on hover. */
@@ -169,11 +140,14 @@
 }
 
 .avatar-ring {
-  animation: spin 40s linear infinite;
+  animation:
+    spin 40s linear infinite,
+    fade-in 1s ease both;
+  animation-delay: 0s, 500ms;
 }
 
 .group:hover .avatar-ring {
-  animation-duration: 12s;
+  animation-duration: 12s, 1s;
 }
 
 /* About quote: steps draw in, the figure appears, raises its arms, then hops. */
@@ -256,14 +230,6 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  :root {
-    --intro: 0ms;
-  }
-
-  .intro {
-    display: none;
   }
 
   *,
