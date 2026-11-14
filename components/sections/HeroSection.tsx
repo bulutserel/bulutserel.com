@@ -31,7 +31,7 @@ export function HeroSection() {
           </p>
           <h1
             id="hero-heading"
-            className="mt-6 text-balance text-5xl font-medium leading-[0.95] tracking-[-0.04em] sm:text-7xl lg:text-[6.5rem]"
+            className="mt-6 text-balance text-5xl font-medium leading-[0.95] tracking-[-0.04em] sm:text-[min(4.5rem,9svh)] lg:text-[min(6.5rem,12svh)]"
           >
             <Words text={lead} start={0} />
             <Words text={rest} start={leadCount} className="text-muted" />

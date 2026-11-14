@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 export function AvatarRing() {
   const phrase = `${site.heroMantra.replace(/,? AND |, /g, " · ")} · `;
   return (
-    <div className="group relative aspect-square w-60 sm:w-72 lg:w-96">
+    <div className="group relative aspect-square w-60 sm:w-72 md:self-center lg:w-96">
       <svg
         viewBox="0 0 200 200"
         aria-hidden
