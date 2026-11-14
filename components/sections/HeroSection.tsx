@@ -21,7 +21,7 @@ export function HeroSection() {
 
   return (
     <section aria-labelledby="hero-heading">
-      <Container className="grid items-end gap-12 pb-16 pt-16 sm:pt-24 md:grid-cols-[1fr_auto] md:pb-24 md:pt-32">
+      <Container className="grid items-end gap-12 pb-16 pt-6 sm:pt-8 md:grid-cols-[1fr_auto] md:pb-24 md:pt-10">
         <div>
           <p
             className="fade-up font-mono text-xs uppercase tracking-[0.2em] text-muted"
